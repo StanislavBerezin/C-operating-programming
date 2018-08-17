@@ -12,26 +12,26 @@ int main(int argc, char **argv) {
 
 	int *ptr;
     // allocate an array of 10 integers using malloc()
-    //it will fail and no malloc worked
     int *a = (int *)malloc(sizeof(int) * ARRAY_LENGTH_1);
     if (a == NULL) {
         printf("memory allocation failed\n");
         return EXIT_FAILURE;
     }
 
-    // print array of 10 integers
+    
     printf("an array of 10 integers allocated using malloc():\n");
+    //this makes an array based on on variable A used before
     for (int i = 0; i < ARRAY_LENGTH_1; ++i) {
-        printf("%d h", a[i]);
+        printf("%d", a[i]);
     }
     printf("\n\n");
 
-    // initialise array with values 0 through 9
+    //it goes through an array and makes puts a number from 0-9
     for (int i = 0; i < ARRAY_LENGTH_1; ++i) {
         a[i] = i;
     }
 
-    // print array of 10 integers
+    // printing that array
     printf("an array of 10 integers 0..9:\n");
     for (int i = 0; i < ARRAY_LENGTH_1; ++i) {
         printf("%d ", a[i]);
@@ -49,28 +49,28 @@ int main(int argc, char **argv) {
 
 	//free(ptr);  // added by Maolin
 
-    // print array of 20 integers
+    // print array of 20 integers, the new ones are zerios
     printf("an array of 20 integers of reallocated using realloc():\n");
     for (int i = 0; i < ARRAY_LENGTH_2; ++i) {
         printf("%d ", a[i]);
     }
     printf("\n\n");
 
-    // free memory for 20 integers allocated by realloc()
+    // freeing that memory
     free(a);
 
     // print pointer of free'd memory as an integer, what happens if you dereference this pointer?
     printf("free'd memory had address:\n");
     printf("%p\n\n", a);
 
-    // allocate an array of 20 integers using calloc()
+    // using calloc()
     a = (int *)calloc(ARRAY_LENGTH_2, sizeof(int));
     if (a == NULL) {
         printf("memory allocation failed\n");
         return EXIT_FAILURE;
     }
     
-    // print array of 20 integers
+    // printing array of 20 integers
     printf("an array of 20 integers allocated using calloc():\n");
     for (int i = 0; i < ARRAY_LENGTH_2; ++i) {
         printf("%d ", a[i]);
