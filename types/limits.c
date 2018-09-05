@@ -1,12 +1,18 @@
 #include <stdio.h>
-int main(void) {
-char myChar = 'r';
-int k = 72; /* 65 is the ASCII encoding for 'A' */
+int main()
+{
+    // VERSION 1
+    // printf("Enter a character: ");
+    // //ivoking getChar
+    // int myChar = getchar();
+    // printf("The integer value of this character is %d\n", myChar);
 
-//based on the encoding if its a char etc
-printf("The value printed is %c\n", k);
-printf("The value printed is %d\n", k+3);
-printf("The value printed is %c\n", k+3);
-printf("The value printed is %c\n", myChar + 3);
-return 0;
-} 
+    // VERSION 2
+    printf("enter a char");
+
+    char myChar;
+    scanf("%c", &myChar);
+    //by saing %d we will get the ASCII value
+    printf("your char is %d \n", myChar );
+    return 0;
+}
