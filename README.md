@@ -179,9 +179,9 @@ Memory in C
 1) Code memory
 2) Static data memory - variables. Initialised before the main begins and exists till the end.
 3) Runtime stack memory - function calls (return address, params, local variable(inside of functions), internal registers machine specific info)
-4) Heap memory - the memory that is given during runtime
+4) Heap memory - the memory that is given during runtime, dynamic
 
 callcoc() and malloc() memory allocation <sdlib.h>
 calloc(size_t n, size_t s), n => object, s => bytes
-malloc(size_t s) just the size
+malloc(size_t s) just the size, should be manually deactivated
 both should be positive, if u want to free, then free(address).

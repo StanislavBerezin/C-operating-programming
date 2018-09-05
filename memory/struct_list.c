@@ -9,6 +9,7 @@
 #define NAME_LENGTH 256
 #define PEOPLE 4
 
+// allows us to create an alias for exiting, so person will be person_t
 typedef struct person person_t;
 
 struct person {
@@ -17,11 +18,12 @@ struct person {
     int height;
 };
 
+// p->name is identical as (*p).name
 void person_print(person_t *p) {
     printf("name=%s age=%dyears height=%dcm\n", p->name, p->age, p->height);
 }
 
-
+// new allias
 typedef struct node node_t;
 
 // a node in a linked list of people
