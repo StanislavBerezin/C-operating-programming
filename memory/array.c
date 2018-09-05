@@ -12,33 +12,39 @@ int number[] = {66, 82, 65, 68, 76, 69, 89};
 
 int main(int argc, char **argv) {
    // type 'man -s 3 printf' at the linux terminal to learn how printf() works
-   printf("Print name of program using printf()...\n %s", argv[0]);
+//    printf("Print name of program using printf()...\n %s", argv[0]);
+   printf("The porgramm name is %s \n" , argv[0]);
 
    printf("\n\nPrint program arguments using printf()...\n ");
-   /// THIS takes ARGC which is the argument passed after "./array" for example "./array ArgumentHere"
-   //that will print "Argument here" thats because argc is the argument, and argv is each letter, so
-   //itterating through each letter we can print it
-     for (int i = 1; i < argc; ++i) {
-        printf("%s\n", argv[i]);
-    }
+
+   //we start from 0 and comparing against the number of arguments, and 
+   // through argv we print them
+   for(int i = 0; i < argc; ++i){
+       printf("%s \n", argv[i]);
+   }
 
 
-   printf("\nIterate over text array and print characters using array index operator []...\n");
+
+   printf("\n \n Iterate over text array and print characters using array index operator []...\n");
    //simpy itterating through the arguments
-   for (int i = 0; i < TEXT_SIZE; i++){
+    // this method is the index operator (the regular style)
+   for(int i =0; i< TEXT_SIZE; i++){
        printf("%c", text[i]);
    }
 
 
+
    printf("\n\nIterate over text array and print chracters using offsets *(text + offset)...\n");
+    // a pointer of text is incremented by 1;
    for (int i = 0; i < TEXT_SIZE; ++i) {
         printf("%c", *(text + i));
     }
 
   //we get the pointer of text
-  char *p = text;
+    char *p = text;
     printf("\n\nIterate over text array and print characters by incrementing pointer...\n");
     for (int i=0; i < TEXT_SIZE; ++i) {
+        // we know that an array pointer refers to the first element so
         //then from each we print a letter and increment it
         printf("%c", *p);
 		p++;

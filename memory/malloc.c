@@ -26,10 +26,12 @@ int main(int argc, char **argv) {
     }
     printf("\n\n");
 
-    //it goes through an array and makes puts a number from 0-9
-    for (int i = 0; i < ARRAY_LENGTH_1; ++i) {
-        a[i] = i;
+//it goes through an array and makes puts a number from 0-9
+    for(int i = 0; i <ARRAY_LENGTH_1; ++i){
+        a[i]=i;
     }
+    
+
 
     // printing that array
     printf("an array of 10 integers 0..9:\n");
@@ -65,9 +67,14 @@ int main(int argc, char **argv) {
 
     // using calloc()
     a = (int *)calloc(ARRAY_LENGTH_2, sizeof(int));
+
     if (a == NULL) {
         printf("memory allocation failed\n");
         return EXIT_FAILURE;
+    }
+    
+    for(int i = 0; i < ARRAY_LENGTH_2; i++){
+        a[i]=i;
     }
     
     // printing array of 20 integers
