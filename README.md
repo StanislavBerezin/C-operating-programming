@@ -106,7 +106,7 @@ void *pointer; is for any type
 ```man man``` is the guide for linux
 
 
-# Operating system structures
+# Operating system structures (2)
 Lecture 2
 OS gives envrionemnt for app execution and services to users and other apps.One set, User find helpful:
 1) User interface (CLI, UI, GUI, Batch(old))
@@ -185,3 +185,95 @@ callcoc() and malloc() memory allocation <sdlib.h>
 calloc(size_t n, size_t s), n => object, s => bytes
 malloc(size_t s) just the size, should be manually deactivated
 both should be positive, if u want to free, then free(address).
+
+# Processes (3)
+Lecture 3
+
+IS executes various aps
+1) Batch system jobs (processesor in task manager)
+2)Time -share sysstems (user apps or tasks)
+
+.The code is called - (text section)
+.Stack keeps the local variables, params, return addresses
+.Data section - global variables
+.Heap memory allocating during run time (malloc)
+
+Programm becomes a process after executable file exe. is loaded. Can be started with GUI, mouse clicks, CMD etc. One app can be multiple processes.
+
+Process states:
+1) New - creation
+2) Running - instructions are executed
+3) Waiting - waiting for any event to happen
+4) Ready - ready to be assigned to processor
+5) Terminated - finished execution
+ The logic is NEW -> READY -> RUNNING -> either: READY || WAITING(i/o) || TERMINATED
+
+TASK CONTROL BLOCK
+Keepng the information about the processes
+1) State
+2) Counter (ID)
+3) CPU register, pointers to STACK etc
+4) CPU scheduling -> prioritisation
+5) Memory managment -> how much memory is used for something or allocated
+6) Accounting information ->  Task manager
+7) I/O status information 
+
+Threads
+Process has a single thread of execution. Multiple threading will require more programm counters. Must have a storage for thread details.
+
+Process scheduling
+TO maximise to CPU performance, process scheduler selects among available processes for next execution on CPU. 
+Job queue - set all processes in the system
+Ready qeue - residing in main memory waiting to execute
+Device queue- I/O
+
+Schedulers
+Long term - selects what to be into ready queue, might be slow(mins, secs), degree of multi-programming, 
+Short term - which one to be executed next, works in miliseconds
+Processes can be either: 
+1) I/O bound process - most of the time waiting, no computation
+2) CPU bound processes, computations
+Medium term scheduler - Mix between the two
+
+Context switch
+When CPU switches between processes it records the states and saves the one one
+Time dependant on hardware. Context switch is overhead so doesnt do anything much, its just something we need to do.
+
+Process creation
+Parent process creates children process, and forming a tree of processes, you can view ```pstree -ap``` or ```pstree -ap | grep (what u neeed)``` will show you PID and the process itself. 
+Options for children and parents:
+1)PArents and children share all resources
+2)Children share subset of parents resources
+3) No sharing
+Exec options
+1) Can start parents and children conccurently
+2) Parent wait until children is terminated
+Address space, child duplicate of parent, child has a programm loaded into it
+Fork() dublicates the process -> can then call exec to call other processes and then exits and merges with waiting parent.
+CHild returns ALWAAYS = 0
+PARENT returns the process ID of the process
+Child can also find out it own PID after a system call. Can also wait(NULL) for all children to execute.
+
+Process termination
+Process asks the OS to delete it ```exit()```
+Parent may terminate the excution of children by abort(), if no needed, or resources have exceeded, or if parent is shutting down. if no parent waiting then its a zombie process, if parent is terminated then its children are orphans.
+
+Interprocess communication
+Reasons for cooperation: information sharing, computation speedup, modularity, convinience. Two models of IPC (interprocess communication):
+1)shared memmory
+2) Message passing, to synchronise actions, communicate with each without sharing variables. send(message) and receive(message) can be used
+Implemention is either physical or logical 
+
+Producer-consumer problem
+Unbounded buffer - places without limit on the size of buffer
+bounded buffer - with limits
+
+Syncronisation
+Blocking is considrred synchronous
+Blocking send has a sender block until the message is recieved
+Blocking recieve has a reciver block untill a message is available
+
+Non -blocking - is async
+It doesnt wait, it sends and resumes normal operations.
+
+Practical 3
