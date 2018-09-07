@@ -276,4 +276,80 @@ Blocking recieve has a reciver block untill a message is available
 Non -blocking - is async
 It doesnt wait, it sends and resumes normal operations.
 
-Practical 3
+# Threads (4)
+Lecture 4
+Multiple tasks can be done by seperate threads
+1)Update display (can work on other stuff behind the screen)
+2) Fetch data
+3) Spell checking (u can still type while its checking)
+4) Answer a network request (if u read from disk or any web-server)
+Threads have its own stack etc, can be used to improve the performance (time-wise). Can perform multiple tasks at the same time and independently. OS distributes and allocated everything ```top``` in linux task manager. Thread creation is light-weight, process creation is heavy.
+2 CPU's can increase efficiency, need to thread tasks. For example, a client sends request to a server that is in infinite loop, once recieved a request a thread is created to deal with that request.
+Benefits: Responsivness (allows further execution), Resource shareing, Economy (cheaper than making a new process), Scalability (can take advantage of multi-processeor arhitecture).
+
+Multi-core
+Multi-processers, includes challenges:
+1) Dividing activities
+2) Balance
+3) Data spliting
+4) Data dependency
+5) Testing and debugging
+Types of parallelism:
+1) Data
+2) Task
+In single we have registers and stack shared, but in multi threaded each thread has its own registers and stacks.
+
+Amdahl's law - identifies gains from adding additions cores (how much can u paralise a programm) (MORE)
+If 75 parallel/ 25% serial, moving from 1 core to 2, will speed up by 1.6 times. So if 75% of programm we can paralise then the speed up would be around (half of the time it takes to execute the parallel section)
+
+User threads and Kernel Threads
+User threads -managed by user level threads library. 3 primiary threads: POSIX Pthreads, windows threads, java threads.
+
+Kernel threads - supported by Kernel (OS)
+
+Threading models
+Many to one - lots of user threads mapping to one kernel thread, one thread blocking causes all to block. Multi thread will not provide efficiency as its only 1 kernel thread at the end, but the applications might work better. Only few system se to use
+
+One to One - 1 user thread, 1 kernel thread, so has its individual, 1 user thread creates a kernel thread. Higher conncurrency, number of threads can be resrictied during to overhead
+
+Many to Many - User makes threads and OS distributes them to kernel threads.
+
+Two level model -combination of one to one and many to many, some tasks can be assigned to a specific kernel thread. 
+
+Pthreads for kernel and user threads when programming
+
+Implicit threading - to make it easier for programming
+
+Thread pools - u make many threads and if a new task comes along a thread is used out of the pool.
+Advantages: a bit faster then making a new thread. Number of threads in the app is bounded to the size of the pool. Task seperation
+
+Signals - in case somehng is rong
+Thread local storage (TLS), variables inside of a thread.
+Prac 4
+can use:
+1) #include <pthread.h>
+2) #include <omp.h>
+
+if u type
+``` 
+    #pragma omp parallel{
+        printf("im paralel)
+    }
+```
+will execte as many times as cores on your system.
+
+if 
+```
+    #pragma omp parallel for
+    for(-----){
+        loop
+    }
+```
+pthread.cancel(id)
+
+Then it will loop and break the loop into different cores, for example 1-3 on one core, 3-6 on another etc.
+
+USe case sceanrio: You migh want to populate an array with a loop and calulate the sum at the end. The solution could be to do praggma omp paralel for the whole thing and pragma omp for, for the loop.
+
+
+
