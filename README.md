@@ -170,7 +170,8 @@ char *last_name;
 int student_id;
 char grade;
 }
-``` and then struct student s1, class[100];
+``` 
+and then struct student s1, class[100];
 so after u can implement something like s1.grade = "A" etc.
 
 Memory in C
@@ -351,5 +352,44 @@ Then it will loop and break the loop into different cores, for example 1-3 on on
 
 USe case sceanrio: You migh want to populate an array with a loop and calulate the sum at the end. The solution could be to do praggma omp paralel for the whole thing and pragma omp for, for the loop.
 
+# Process synchronization (5)
+Lecture 5
 
+When all threads doing different jobs, sometimes its wise to synchronise it.
 
+Processes, can be done done cocurrently as we know. If something is accessed at the same time that might cause a problem. Need to maintain the mechanism of accessability.
+
+Critical section problem - when sharing the same data. ```#pragma omp critical``` 
+Solutions
+- Mutual Exclusion - if thread enters, then no other process can do it.
+- Progress - if there is a thread waiting to enter, and the data is free, then it can enter, no process should be waiting indefinetely
+- Bondering Waiting - a limit on how long a process can wait to enter the section.
+
+Two approaches depending on kernel
+1) Pre-emptive - lets each processes to access data and after a certain period of time swaps to another process.
+2)Non pre-emptive - Process itself determines when it finishes the execution.
+
+Peterson's solution
+Two processes 
+
+Mutex locks (simplest)
+OS deisgners build it to solve critical section.Enables u the critical section to protect it. Requires busy waiting and lock before spinlock. It has a state of LOCK(acquire()) and UNLOCKED(release())
+
+Semaphore
+It doesnt require busy waiting, (wait() and signal()). Less complicated, S- integer variable. U need to signal when it becomes ready
+There is a waiting queue for your threads. 
+
+Deadlock and startvation
+
+- Deadlock - Sometimes u can face a situation when all threads are waiting and no threads accesses data. 
+
+- Starvation - process is not removed from semaphore queue
+
+Classical problems of Sync
+
+- Bounded Buffer problem - when we might lose some bits of buffer (Semaphore)
+
+- Readers and Writers - accessing data at the same time (Semiphore) 
+
+- Dining Philosophers(might have dead lock)(Monitors)
+Monitors, one process can be active in a monitor time (not powerul to have sync)
