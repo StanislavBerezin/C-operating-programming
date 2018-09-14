@@ -393,3 +393,88 @@ Classical problems of Sync
 
 - Dining Philosophers(might have dead lock)(Monitors)
 Monitors, one process can be active in a monitor time (not powerul to have sync)
+
+
+# CPU Scheduling (6)
+Lecture 6
+
+CPU optimisation achieved by multiprogramming, things can happen concurently. 
+
+CPU schedulers
+- Short term scheduler - decides which ones are going first. From running to waiting, from running to ready, from waiting to reade, annd termination. Those are non-pre-emptive(app decideds) - the app decides itself when to stop executing. Preemptrive - OS decides - aceess to data, when in kernel mode, critical operations.
+
+Dispatcher
+- Gives a control to CPU, from kernel mode. Switches context. Dispatch latency - duration of when to stop 1 process and start another
+
+Scheduling Critera - Algorith optimisation criteria
+Those are the things are taken into consideration when scheduling processes
+- CPU utlisation 
+- Throughput
+- Turnaround time (how long to execute)
+- Waiting time (how long process waitied)
+- Response time 
+
+Calculating process time - waiting time (First-come, FIrst served (FCFS))
+Process, P1, P2, P3
+Burst time 24(p1), 3(p2), 3(p3)
+
+Meaning that the first one has to be executed in 24 secs, second in 3, and last in 3. So the waiting time for the first one would be P1 = 0, coz it doesnt have to wait, for P2, it would be 24 (because it has to wait for P1 to complete), and P3 has to wait 27secs, because P2(3) and P1(24) will take 27 in ttotal to complete. 
+The average time would be (0,24,27)/3= 17 secs
+
+It can reschedule the processes to make the quick ones to go first.
+
+can be P2, P3, P1 in this case the waiting would be
+P1(0 secs), P2(3secs), and P3(6secs). WHich makes the average (0+3+6)/3=3 secs, which is much faster.
+
+Shortest-Job-First (SJF) Scheduling
+
+- Does what described above, to increase the efficiency and give quick processes a way to go first.
+
+p1 BURST 6 secs, p2 BURST 8 secs, p3 BURST 7 secs p4 BURST 3 secs. 
+
+In this case p4 goes first, then p1, then p3 and p2.
+
+waiting - P4 wait - 0 secs, p1 - 3 secs, p3 - 9 secs, p4 - 14 secs, and end is at 14+8 = 24
+The average (3+16+9+0)/4 = 7
+
+With arrival times, it takes 1 secs from the first P to jump to the shortest
+
+Priority scheduling
+CPU runs with higher priority, problem is starvation (low priority might never execute) solution is agin (the older it gets the higher the priority). If priority assigned then execute accordingly
+
+Round Robin(RR)
+Each process get unit of CPU time, after this the process is pre-empted and added to end of the queue. Like a conveynor.
+Example P1 BURST 24, P2 BURST 3secs, P3 BURST 3 secs
+TIME QUAANTRUM 4
+ Will result in P1 - 4 secs, P2 - 7 secs, P3 - 10 secs, P1- 14, P - 18. Basic conveynor
+
+
+Multilevel Queue
+Ready queue is seperated into
+- Foregrond (interactive) (RR)
+- Background (batch) (FCFS)
+
+Priority
+Processes - P
+1) System P
+2) Interactive P
+3) Interactive editing P
+4) Batch P
+5) Student P
+
+Multilevel Feedback Queue
+Process can move between the queues, aging can be done this way. All queues might have different algorithms and different quantums if its RR.
+
+Threads scheduling
+User level and Kernel threads. Threads can be scheduled not processes.  System contention Scope (SCS) operating system decided which thread will go, competition raises.
+
+Multi-processor scheduling
+Is becoming harder with multiple CPU's
+- Assymeytic - only one processor acess the system data structure ( 1 core is working as a data man)
+- Symmeytric - each process is self scheduling
+
+NUMA and CPU
+CPU has its own access to memory, one CPU has its own memory slot. CPU connecting to another CPU memory is quite slow.
+
+Multiple processor schedulng - load blanacing
+Load balancing to keep worload evenly distributed, if found overload pushes from 1 CPU to another CPU, PULLs waiting processesor from busy processor.
