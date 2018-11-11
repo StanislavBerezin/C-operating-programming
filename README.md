@@ -249,7 +249,7 @@ Processes can be either:
 Medium term scheduler - Mix between the two
 
 Context switch
-When CPU switches between processes it records the states and saves the one one
+When CPU switches between processes it records the states and saves the one
 Time dependant on hardware. Context switch is overhead so doesnt do anything much, its just something we need to do.
 
 Process creation
