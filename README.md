@@ -118,7 +118,9 @@ void *pointer; is for any type
 
 # Operating system structures (2)
 Lecture 2
+
 OS gives envrionemnt for app execution and services to users and other apps.One set, User find helpful:
+
 1) User interface (CLI, UI, GUI, Batch(old))
 2)apps
 3)I/O
