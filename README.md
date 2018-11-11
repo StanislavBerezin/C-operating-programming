@@ -7,6 +7,12 @@ How to get started:
 2) run ```./helloWorld```
 
 Lecture 1
+OS - programm acts as intermediary between a user and hardware
+OS goals:
+- Execute apps
+- Convinient to use
+- Efficient usage of hardware
+
 
 Kernel is running at all times on the computer.
 
@@ -16,6 +22,10 @@ Computer system can be broken to 4
 3)Apps 
 4) Users- people, other machines
 
+OS- handles resources, ease of use, etc, battery optimisation
+definitions: 1) resource allocation
+             2) Controll programm
+             
 
 When computer starts "bootstrap program" is loaded which is stored in ROM or EPROM (firmware). It initilases all aspects of the system, loads kerner and begins execution.
 
@@ -34,7 +44,7 @@ Devices transfer blocks of data from buffer storage directly without CPU interve
 
 - Storage structure
 Larger storage is slower comparing to smaller main ones. 
-The hieargy is :
+The hiearchy is :
 1) speed
 2) cost
 3) volatility
